@@ -4,12 +4,6 @@ server:
 spring:
   application:
     name: onboarding
-
   data:
-    data:
-      mongodb:
-        host: localhost
-        port: 27017
-        database: onboarding
-        username: admin
-        password: password
+    mongodb:
+      uri: mongodb://localhost:27017/onboarding
