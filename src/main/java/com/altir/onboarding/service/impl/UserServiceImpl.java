@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         return userMapper.toModel(
                 userRepository.save(
-                        userMapper.toUserEntity(user)));
+                        userMapper.toEntity(user)));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.toModel(
                 userRepository.save(
-                        userMapper.toUserEntity(user)));
+                        userMapper.toEntity(user)));
     }
 
     @Override

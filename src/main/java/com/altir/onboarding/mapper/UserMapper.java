@@ -16,14 +16,14 @@ public interface UserMapper {
 
     UserResponseDTO toResponseDTO(User user);
 
-    User toModel(UserEntity userEntity);
+    User toModel(UserEntity entity);
 
-    User toModel(UserPatchDTO userEntity);
+    User toModel(UserPatchDTO patchDTO);
 
-    UserEntity toUserEntity(User user);
+    UserEntity toEntity(User user);
 
-    List<UserResponseDTO> toUserResponseDTOList(List<User> userList);
+    List<UserResponseDTO> toResponseDTOList(List<User> users);
 
-    User toModel(UserPostDTO userPostDTO);
+    User toModel(UserPostDTO postDTO);
 
 }

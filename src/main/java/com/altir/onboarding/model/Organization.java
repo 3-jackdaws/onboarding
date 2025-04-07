@@ -1,18 +1,23 @@
 package com.altir.onboarding.model;
 
-import com.altir.onboarding.api.user.UserPostDTO;
 import com.altir.onboarding.entity.AccountType;
 import com.altir.onboarding.entity.OrganizationStatus;
 import lombok.Data;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 public class Organization {
 
+    private String id;
+
     private String accountName;
-    private String federalName;
+    private String federalEin;
     private AccountType accountType;
-    private OrganizationStatus organizationName;
-    private List<UserPostDTO> users;
+    private OrganizationStatus status;
+
+    private LocalDateTime createdDate;
+    private String createdBy;
+    private LocalDateTime updatedDate;
+    private String updatedBy;
 }

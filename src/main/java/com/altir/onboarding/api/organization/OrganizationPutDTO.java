@@ -5,10 +5,8 @@ import com.altir.onboarding.entity.OrganizationStatus;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
-public class OrganizationDTO {
+public class OrganizationPutDTO {
 
     @NotBlank
     private String accountName;
@@ -17,10 +15,5 @@ public class OrganizationDTO {
     @NotBlank
     private AccountType accountType;
     @NotBlank
-    private OrganizationStatus organizationName;
-
-    private LocalDateTime createdDate;
-    private String createdBy;
-    private LocalDateTime updatedDate;
-    private String updatedBy;
+    private OrganizationStatus status;
 }

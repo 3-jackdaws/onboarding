@@ -8,19 +8,10 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class OrganizationDTO {
+public class OrganizationPatchDTO {
 
-    @NotBlank
     private String accountName;
-    @NotBlank
     private String federalEin;
-    @NotBlank
     private AccountType accountType;
-    @NotBlank
-    private OrganizationStatus organizationName;
-
-    private LocalDateTime createdDate;
-    private String createdBy;
-    private LocalDateTime updatedDate;
-    private String updatedBy;
+    private OrganizationStatus status;
 }

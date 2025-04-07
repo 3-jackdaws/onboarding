@@ -2,18 +2,18 @@ package com.altir.onboarding.entity;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Document
 public class OrganizationEntity {
 
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @NotBlank
     private String accountName;
@@ -23,11 +23,13 @@ public class OrganizationEntity {
     private AccountType accountType;
     @NotBlank
     private OrganizationStatus status;
-    @NotBlank
-    private List<String> userIds;
 
-    private LocalDate createdDate;
+    @CreatedDate
+    private LocalDateTime createdDate;
+    @CreatedBy
     private String createdBy;
-    private LocalDate updatedDate;
+    @LastModifiedDate
+    private LocalDateTime updatedDate;
+    @LastModifiedBy
     private String updatedBy;
 }

@@ -2,22 +2,19 @@ package com.altir.onboarding.api.organization;
 
 import com.altir.onboarding.entity.AccountType;
 import com.altir.onboarding.entity.OrganizationStatus;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class OrganizationDTO {
+public class OrganizationResponseDTO {
 
-    @NotBlank
+    private String id;
+
     private String accountName;
-    @NotBlank
     private String federalEin;
-    @NotBlank
     private AccountType accountType;
-    @NotBlank
-    private OrganizationStatus organizationName;
+    private OrganizationStatus status;
 
     private LocalDateTime createdDate;
     private String createdBy;

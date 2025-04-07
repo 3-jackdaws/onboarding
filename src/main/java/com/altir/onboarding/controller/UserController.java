@@ -23,18 +23,17 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getUsers(String firstName, String lastName) {
-        userService.getUsers(firstName, lastName);
         return ResponseEntity.ok(
-                userMapper.toUserResponseDTOList(
+                userMapper.toResponseDTOList(
                         userService.getUsers(firstName, lastName)));
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserPostDTO user) {
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserPostDTO postDTO) {
         return ResponseEntity.ok(
                 userMapper.toResponseDTO(
                         userService.createUser(
-                                userMapper.toModel(user))));
+                                userMapper.toModel(postDTO))));
     }
 
     @DeleteMapping("/{id}")
@@ -52,9 +51,9 @@ public class UserController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<UserResponseDTO> patchUserById(
-            @PathVariable String id, @RequestBody UserPatchDTO userPatchDTO) {
+            @PathVariable String id, @RequestBody UserPatchDTO patchDTO) {
         return ResponseEntity.ok(
                 userMapper.toResponseDTO(
-                        userService.patchUser(id, userMapper.toModel(userPatchDTO))));
+                        userService.patchUser(id, userMapper.toModel(patchDTO))));
     }
 }
