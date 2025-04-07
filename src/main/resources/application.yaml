@@ -6,5 +6,10 @@ spring:
     name: onboarding
 
   data:
-    mongodb:
-      uri: mongodb://localhost:27017/onboarding
+    data:
+      mongodb:
+        host: localhost
+        port: 27017
+        database: onboarding
+        username: admin
+        password: password
