@@ -17,6 +17,7 @@ public class UserPostDTO {
     @NotBlank
     private String phoneNumber;
 
+    private String organizationId;
     private UserStatus status;
     private Role role;
 }

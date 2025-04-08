@@ -27,7 +27,7 @@ public class DefaultAdvice extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-//        log.info(ex.getMessage());
+        log.info(ex.getMessage());
         return buildErrorResponseDto(HttpStatus.BAD_REQUEST,
                 PARAMETER_FORMAT_INVALID.formatted(buildBadParamsMessage(ex)));
     }
@@ -36,7 +36,7 @@ public class DefaultAdvice extends ResponseEntityExceptionHandler {
             IllegalArgumentException.class
     })
     public ResponseEntity<ApiErrorDTO> handleBadRequestException(Exception e) {
-//        log.error(e.getMessage(), e);
+        log.error(e.getMessage(), e);
         return buildErrorResponseDto(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
@@ -45,7 +45,7 @@ public class DefaultAdvice extends ResponseEntityExceptionHandler {
             OrganizationNotFoundException.class
     })
     public ResponseEntity<ApiErrorDTO> handleNotFoundException(Exception e) {
-//        log.error(e.getMessage(), e);
+        log.error(e.getMessage(), e);
         return buildErrorResponseDto(HttpStatus.NOT_FOUND, e.getMessage());
     }
 

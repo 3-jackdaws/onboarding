@@ -16,6 +16,8 @@ public class UserEntity {
     private String id = UUID.randomUUID().toString();
 
     @NotBlank
+    private String organizationId;
+    @NotBlank
     private String firstName;
     @NotBlank
     private String lastName;

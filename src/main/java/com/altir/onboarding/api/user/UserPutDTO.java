@@ -20,4 +20,6 @@ public class UserPutDTO {
     private UserStatus status;
     @NotBlank
     private Role role;
+
+    private String organizationId;
 }

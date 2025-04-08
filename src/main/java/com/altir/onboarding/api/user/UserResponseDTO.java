@@ -17,7 +17,7 @@ public class UserResponseDTO {
     private String phoneNumber;
     private UserStatus status;
     private Role role;
-
+    private String organizationId;
 
     private LocalDateTime createdDate;
     private String createdBy;
