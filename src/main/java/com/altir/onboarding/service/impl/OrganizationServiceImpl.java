@@ -1,5 +1,6 @@
 package com.altir.onboarding.service.impl;
 
+import com.altir.onboarding.exception.OrganizationAlreadyExistsException;
 import com.altir.onboarding.exception.OrganizationNotFoundException;
 import com.altir.onboarding.mapper.OrganizationMapper;
 import com.altir.onboarding.mapper.OrganizationPatchMapper;
@@ -55,11 +56,21 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization createOrganization(Organization organization) {
-        // Todo add check for existing organization via accountName and federalEin
+        existingCheck(organization);
+
         return organizationMapper.toModel(
                 organizationRepository.save(
                         organizationMapper.toEntity(organization))
         );
+    }
+
+    private void existingCheck(Organization organization) {
+        organizationRepository.findAllByAccountNameAndFederalEin(organization.getAccountName(), organization.getFederalEin())
+                .ifPresent(existingOrganization -> {
+                    throw new OrganizationAlreadyExistsException(
+                            "An Organization with the following Account Name: [%s] and Federal EIN: [%s] already exists"
+                                    .formatted(organization.getAccountName(), organization.getFederalEin()));
+                });
     }
 
     @Override

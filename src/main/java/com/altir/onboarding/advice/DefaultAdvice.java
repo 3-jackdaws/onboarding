@@ -1,7 +1,9 @@
 package com.altir.onboarding.advice;
 
 import com.altir.onboarding.api.error.ApiErrorDTO;
+import com.altir.onboarding.exception.OrganizationAlreadyExistsException;
 import com.altir.onboarding.exception.OrganizationNotFoundException;
+import com.altir.onboarding.exception.UserAlreadyExistsException;
 import com.altir.onboarding.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +22,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @ControllerAdvice
 public class DefaultAdvice extends ResponseEntityExceptionHandler {
-
 
     private static final String PARAMETER_FORMAT_INVALID = "Parameter format is invalid: [%s]";
 
@@ -42,11 +43,18 @@ public class DefaultAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({
             UserNotFoundException.class,
-            OrganizationNotFoundException.class
-    })
+            OrganizationNotFoundException.class})
     public ResponseEntity<ApiErrorDTO> handleNotFoundException(Exception e) {
         log.error(e.getMessage(), e);
         return buildErrorResponseDto(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+
+    @ExceptionHandler({
+            UserAlreadyExistsException.class,
+            OrganizationAlreadyExistsException.class})
+    public ResponseEntity<ApiErrorDTO> handleAlreadyExistsException(Exception e) {
+        log.error(e.getMessage(), e);
+        return buildErrorResponseDto(HttpStatus.CONFLICT, e.getMessage());
     }
 
     private <T> ResponseEntity<T> buildErrorResponseDto(HttpStatus status, String message) {

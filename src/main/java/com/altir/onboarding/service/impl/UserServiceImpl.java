@@ -1,5 +1,6 @@
 package com.altir.onboarding.service.impl;
 
+import com.altir.onboarding.exception.UserAlreadyExistsException;
 import com.altir.onboarding.exception.UserNotFoundException;
 import com.altir.onboarding.mapper.UserMapper;
 import com.altir.onboarding.mapper.UserPatchMapper;
@@ -61,10 +62,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        //Todo add check for existing user via email
+        existingCheck(user);
+
         return userMapper.toModel(
                 userRepository.save(
                         userMapper.toEntity(user)));
+    }
+
+    private void existingCheck(User user) {
+        userRepository.findAllByEmail(user.getEmail())
+                .ifPresent(existingUser -> {
+                    throw new UserAlreadyExistsException("A user with this Email Address: [$s] already exists.".formatted(user.getEmail()));
+                });
     }
 
     @Override
