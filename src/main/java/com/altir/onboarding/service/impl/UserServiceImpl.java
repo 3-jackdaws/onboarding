@@ -6,6 +6,8 @@ import com.altir.onboarding.exception.UserNotFoundException;
 import com.altir.onboarding.mapper.UserMapper;
 import com.altir.onboarding.mapper.UserPatchMapper;
 import com.altir.onboarding.model.User;
+import com.altir.onboarding.model.enums.Role;
+import com.altir.onboarding.model.enums.UserStatus;
 import com.altir.onboarding.repository.UserRepository;
 import com.altir.onboarding.service.UserService;
 import lombok.AllArgsConstructor;
@@ -32,6 +34,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final MongoTemplate mongoTemplate;
     private final UserPatchMapper userPatchMapper;
+    private final UserNormalizationService normalizationService;
 
     @Override
     public User getUserById(String id) {
@@ -64,11 +67,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         existingCheck(user);
+        normalizationService.normalize(user);
 
         return userMapper.toModel(
                 userRepository.save(
                         userMapper.toEntity(user)));
     }
+
+//    private void normalization(User user) {
+//        if (user.getStatus() == null) {
+//            user.setStatus(UserStatus.SUBMITTED);
+//        }
+//        if (user.getRole() == null) {
+//            user.setRole(Role.ADMIN);
+//        }
+//    }
 
     private void existingCheck(User user) {
         List<UserEntity> users = userRepository.findAllByEmail(user.getEmail());

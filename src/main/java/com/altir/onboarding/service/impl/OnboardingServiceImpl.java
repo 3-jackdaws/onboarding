@@ -9,6 +9,7 @@ import com.altir.onboarding.service.OnboardingService;
 import com.altir.onboarding.service.OrganizationService;
 import com.altir.onboarding.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,6 @@ public class OnboardingServiceImpl implements OnboardingService {
     @Override
     @Transactional // Todo check transactions for mongoDB
     public Details onboardingCreate(Onboarding onboarding) {
-
-        // Todo add default values for user and organization model(status, role...)
         Organization organization = organizationService.createOrganization(onboardingMapper.toOrganizationFromOnboarding(onboarding));
         String organizationId = organization.getId();
 

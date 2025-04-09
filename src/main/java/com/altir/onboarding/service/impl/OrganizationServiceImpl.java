@@ -30,6 +30,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     private OrganizationMapper organizationMapper;
     private MongoTemplate mongoTemplate;
     private OrganizationPatchMapper organizationPatchMapper;
+    private OrganizationNormalizationService normalizationService;
 
     @Override
     public Organization getOrganizationById(String id) {
@@ -58,6 +59,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public Organization createOrganization(Organization organization) {
         existingCheck(organization);
+        normalizationService.normalize(organization);
 
         return organizationMapper.toModel(
                 organizationRepository.save(

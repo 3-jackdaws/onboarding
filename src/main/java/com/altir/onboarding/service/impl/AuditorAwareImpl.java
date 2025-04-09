@@ -1,4 +1,4 @@
-package com.altir.onboarding.service;
+package com.altir.onboarding.service.impl;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;

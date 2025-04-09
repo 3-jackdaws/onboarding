@@ -9,6 +9,9 @@ spring:
       uri: mongodb://localhost:27017/onboarding
 
 default:
-  role: ADMIN
-  user-status: SUBMITTED
+  user:
+    role: ADMIN
+    status: SUBMITTED
+  organization:
+    status: SUBMITTED
   need-code: true
