@@ -1,11 +1,8 @@
 package com.altir.onboarding.api.organization;
 
-import com.altir.onboarding.entity.AccountType;
-import com.altir.onboarding.entity.OrganizationStatus;
-import jakarta.validation.constraints.NotBlank;
+import com.altir.onboarding.model.enums.AccountType;
+import com.altir.onboarding.model.enums.OrganizationStatus;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 public class OrganizationPatchDTO {

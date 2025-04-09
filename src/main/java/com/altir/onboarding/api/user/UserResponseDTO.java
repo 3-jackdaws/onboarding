@@ -1,7 +1,7 @@
 package com.altir.onboarding.api.user;
 
-import com.altir.onboarding.entity.Role;
-import com.altir.onboarding.entity.UserStatus;
+import com.altir.onboarding.model.enums.Role;
+import com.altir.onboarding.model.enums.UserStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;

@@ -55,6 +55,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization createOrganization(Organization organization) {
+        // Todo add check for existing organization via accountName and federalEin
         return organizationMapper.toModel(
                 organizationRepository.save(
                         organizationMapper.toEntity(organization))

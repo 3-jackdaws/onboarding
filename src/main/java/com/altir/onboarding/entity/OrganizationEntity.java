@@ -1,5 +1,7 @@
 package com.altir.onboarding.entity;
 
+import com.altir.onboarding.model.enums.AccountType;
+import com.altir.onboarding.model.enums.OrganizationStatus;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.data.annotation.*;

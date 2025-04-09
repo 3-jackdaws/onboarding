@@ -1,4 +1,4 @@
-package com.altir.onboarding.entity;
+package com.altir.onboarding.model.enums;
 
 public enum AccountType {
     MANUFACTURER,

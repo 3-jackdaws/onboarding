@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
+        //Todo add check for existing user via email
         return userMapper.toModel(
                 userRepository.save(
                         userMapper.toEntity(user)));
