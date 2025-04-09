@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface OrganizationRepository extends MongoRepository<OrganizationEntity, String> {
 
-    Optional<List<OrganizationEntity>> findAllByAccountNameAndFederalEin(String accountName, String federalEin);
+    List<OrganizationEntity> findAllByAccountNameAndFederalEin(String accountName, String federalEin);
 }

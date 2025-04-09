@@ -1,5 +1,6 @@
 package com.altir.onboarding.service.impl;
 
+import com.altir.onboarding.entity.OrganizationEntity;
 import com.altir.onboarding.exception.OrganizationAlreadyExistsException;
 import com.altir.onboarding.exception.OrganizationNotFoundException;
 import com.altir.onboarding.mapper.OrganizationMapper;
@@ -65,12 +66,14 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     private void existingCheck(Organization organization) {
-        organizationRepository.findAllByAccountNameAndFederalEin(organization.getAccountName(), organization.getFederalEin())
-                .ifPresent(existingOrganization -> {
-                    throw new OrganizationAlreadyExistsException(
-                            "An Organization with the following Account Name: [%s] and Federal EIN: [%s] already exists"
-                                    .formatted(organization.getAccountName(), organization.getFederalEin()));
-                });
+        List<OrganizationEntity> organizationEntities = organizationRepository
+                .findAllByAccountNameAndFederalEin(organization.getAccountName(), organization.getFederalEin());
+
+        if (!organizationEntities.isEmpty()) {
+            throw new OrganizationAlreadyExistsException(
+                    "An Organization with the following Account Name: [%s] and Federal EIN: [%s] already exists"
+                            .formatted(organization.getAccountName(), organization.getFederalEin()));
+        }
     }
 
     @Override
