@@ -6,8 +6,6 @@ import com.altir.onboarding.exception.UserNotFoundException;
 import com.altir.onboarding.mapper.UserMapper;
 import com.altir.onboarding.mapper.UserPatchMapper;
 import com.altir.onboarding.model.User;
-import com.altir.onboarding.model.enums.Role;
-import com.altir.onboarding.model.enums.UserStatus;
 import com.altir.onboarding.repository.UserRepository;
 import com.altir.onboarding.service.UserService;
 import lombok.AllArgsConstructor;
@@ -74,15 +72,6 @@ public class UserServiceImpl implements UserService {
                         userMapper.toEntity(user)));
     }
 
-//    private void normalization(User user) {
-//        if (user.getStatus() == null) {
-//            user.setStatus(UserStatus.SUBMITTED);
-//        }
-//        if (user.getRole() == null) {
-//            user.setRole(Role.ADMIN);
-//        }
-//    }
-
     private void existingCheck(User user) {
         List<UserEntity> users = userRepository.findAllByEmail(user.getEmail());
 
@@ -101,6 +90,7 @@ public class UserServiceImpl implements UserService {
                         userMapper.toEntity(user)));
     }
 
+    //Todo add softDelete
     @Override
     public void deleteUser(String id) {
         getUserById(id);

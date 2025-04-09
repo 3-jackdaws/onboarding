@@ -88,6 +88,7 @@ public class OrganizationServiceImpl implements OrganizationService {
                         organizationMapper.toEntity(organization)));
     }
 
+    //Todo add softDelete
     @Override
     public void deleteOrganization(String id) {
         getOrganizationById(id);
